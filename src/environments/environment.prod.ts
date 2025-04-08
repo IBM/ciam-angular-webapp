@@ -8,4 +8,7 @@ export const environment = {
   apiClientSecret: 'PLACEHOLDER_apiClientSecret',
   CE_URL: 'PLACEHOLDER_CE_URL',
   scope: 'openid',
+  integrationID: 'PLACEHOLDER_integrationID', // The ID of this integration
+  region: 'PLACEHOLDER_region', // The region your integration is hosted in
+  serviceInstanceID: 'PLACEHOLDER_serviceInstanceID', // The ID of your service instance
 };
