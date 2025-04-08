@@ -42,8 +42,6 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
-environment.ts
 .env
-/src/environments/environment.ts
 /proxy/.env
 angular-access.tar
