@@ -10,6 +10,10 @@ sed -i 's|PLACEHOLDER_clientSecret|'"${clientSecret}"'|g' "$ENV_FILE"
 sed -i 's|PLACEHOLDER_apiClientId|'"${apiClientId}"'|g' "$ENV_FILE"
 sed -i 's|PLACEHOLDER_clientId|'"${clientId}"'|g' "$ENV_FILE"
 sed -i 's|PLACEHOLDER_CE_URL|'"${CE_URL}"'|g' "$ENV_FILE"
+sed -i 's|PLACEHOLDER_integrationID|'"${integrationID}"'|g' "$ENV_FILE"
+sed -i 's|PLACEHOLDER_region|'"${region}"'|g' "$ENV_FILE"
+sed -i 's|PLACEHOLDER_serviceInstanceID|'"${serviceInstanceID}"'|g' "$ENV_FILE"
+
 
 echo 'vars updated'
 
