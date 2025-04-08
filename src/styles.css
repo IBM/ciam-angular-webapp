@@ -84,8 +84,8 @@ label {
 
 /* Custom Button Styling */
 .btn-my {
-  background-color: #3f51b5; /* Match toolbar color */
-  border-color: #3f51b5;
+  background-color: #569c09; /* Match toolbar color */
+  border-color: #569c09;
   color: #fff;
   padding: 10px 20px; /* Add padding */
   font-weight: 500;
@@ -94,19 +94,19 @@ label {
 }
 
 .btn-my:hover {
-  background-color: #303f9f; /* Darker shade on hover */
-  border-color: #303f9f;
+  background-color: #00935e; /* Darker shade on hover */
+  border-color: #00935e;
   color: #fff;
 }
 
 /* Link Styling */
 a {
-  color: #3f51b5;
+  color: #569c09;
   text-decoration: none;
 }
 
 a:hover {
-  color: #303f9f;
+  color: #00935e;
   text-decoration: underline;
 }
 

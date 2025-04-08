@@ -16,10 +16,10 @@
   height: 100%;
   background: linear-gradient(
     87deg,
-    #3f51b5 0,
-    #5e72e4 100%
+    #00935e 0,
+    #569c09 100%
   ); /* Match our theme color */
-  opacity: 0.8;
+  opacity: 0.65;
 }
 
 .dashboard-header .header-content {
@@ -96,21 +96,79 @@ tbody.my-table.body tr:hover {
 }
 
 tbody.my-table.body tr.active {
-  background-color: #f1f3f9; /* Slightly darker than hover */
+  background-color: #e9ecef; /* Use a standard bootstrap-like active color */
+  font-weight: 500; /* Make text slightly bolder */
   cursor: pointer;
 }
 
-/* Pagination styling */
+/* Status Badge Styling */
+.badge {
+  padding: 0.4em 0.6em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 0.25rem;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.badge-success {
+  background-color: #28a745; /* Green for Active */
+}
+
+.badge-info {
+  background-color: #17a2b8; /* Blue for Completed */
+}
+
+.badge-warning {
+  background-color: #ffc107; /* Yellow for On Hold */
+  color: #212529; /* Darker text for yellow */
+}
+
+.badge-secondary {
+  background-color: #6c757d; /* Grey for others */
+}
+
+/* Activity Feed Styling */
+.activity-feed {
+  max-height: 400px; /* Limit height and make scrollable if needed */
+  overflow-y: auto;
+}
+
+.activity-item .activity-icon {
+  font-size: 1.5rem; /* Larger icons */
+  width: 30px; /* Fixed width for alignment */
+  text-align: center;
+}
+
+.activity-item .activity-icon .bi-chat-dots-fill {
+  color: #0d6efd; /* Blue for comments */
+}
+
+.activity-item .activity-icon .bi-pencil-square {
+  color: #ffc107; /* Yellow for updates */
+}
+
+.activity-item .activity-icon .bi-flag-fill {
+  color: #dc3545; /* Red for milestones */
+}
+
+.activity-item .activity-description {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+/* === Pagination Styling (Commented out) === */
+/*
 div.pag-space {
   margin-top: 1rem;
   display: flex;
-  justify-content: flex-end; /* Right-align pagination */
+  justify-content: flex-end; 
   align-items: center;
   padding: 0.75rem 1.5rem;
   background-color: #f8f9fa;
   border-top: 1px solid #e9ecef;
 }
-
+*/
 button.pag-button {
   min-width: 40px;
   height: 36px;
@@ -119,15 +177,15 @@ button.pag-button {
   background-color: white;
   border: 1px solid #dee2e6;
   border-radius: 4px;
-  color: #3f51b5;
+  color: #569c09;
   font-weight: 500;
   transition: all 0.2s ease;
 }
 
 button.pag-button:hover {
-  background-color: #3f51b5;
+  background-color: #569c09;
   color: white;
-  border-color: #3f51b5;
+  border-color: #569c09;
 }
 
 select.size-page {

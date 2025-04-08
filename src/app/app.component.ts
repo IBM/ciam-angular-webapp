@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -7,12 +8,28 @@ import { environment } from 'src/environments/environment';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'tcs-angular-app';
   loggedInUser = localStorage.getItem('login_token');
   dropdownActive = false;
+  showUserIcon = true; // Default to true
 
   constructor(private router: Router) {}
+
+  ngOnInit() {
+    this.router.events
+      .pipe(
+        filter(
+          (event): event is NavigationEnd => event instanceof NavigationEnd
+        )
+      )
+      .subscribe((event: NavigationEnd) => {
+        // Hide icon on the register page (root path '/')
+        this.showUserIcon = event.urlAfterRedirects !== '/';
+        // Close dropdown on navigation
+        this.dropdownActive = false;
+      });
+  }
 
   openDropdown() {
     this.dropdownActive = !this.dropdownActive;

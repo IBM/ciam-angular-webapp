@@ -37,38 +37,85 @@
                 </tr>
               </thead>
               <tbody class="my-table body">
-                <tr *ngFor="let row of statsData; index as rowIndex">
-                  <td>{{ row["projectId"] }}</td>
-                  <td>{{ row["projectName"] }}</td>
-                  <td>{{ row["projectDescription"] }}</td>
-                  <td>{{ row["projectOwner"] }}</td>
+                <!-- Add click handler and class binding for selection -->
+                <tr
+                  *ngFor="let project of statsData; index as rowIndex"
+                  (click)="selectProject(project)"
+                  [class.active]="project === selectedProject"
+                >
+                  <td>{{ project.projectId }}</td>
+                  <td>{{ project.projectName }}</td>
+                  <td>{{ project.projectDescription }}</td>
+                  <td>{{ project.projectOwner }}</td>
+                  <td>
+                    <!-- Add status badge -->
+                    <span
+                      class="badge"
+                      [ngClass]="getStatusClass(project.status)"
+                    >
+                      {{ project.status }}
+                    </span>
+                  </td>
+                  <td>{{ project.lastUpdated | date : "mediumDate" }}</td>
+                  <!-- Format date -->
+                </tr>
+                <!-- Add message if no projects -->
+                <tr *ngIf="!statsData || statsData.length === 0">
+                  <td
+                    [attr.colspan]="header.length"
+                    class="text-center text-muted"
+                  >
+                    No projects found.
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
-        <!-- Add pagination if needed -->
-        <!-- <div class="pag-space">
-          <button class="pag-button">Prev</button>
-          <button class="pag-button">Next</button>
-          <select class="size-page">
-            <option>10</option>
-            <option>25</option>
-            <option>50</option>
-          </select>
-        </div> -->
+        <!-- Removed pagination section -->
       </div>
     </div>
 
-    <!-- Right Column - Could add summary cards, stats, etc. -->
+    <!-- Right Column - Activity Feed -->
     <div class="col-lg-4 col-md-12">
       <div class="card projects-card">
         <div class="card-header">
-          <h4>Activity</h4>
+          <h4>Recent Activity</h4>
         </div>
-        <div class="card-body">
-          <p class="text-muted">No recent activity to display.</p>
-          <!-- Could add activity feed, notifications, etc. -->
+        <div class="card-body activity-feed">
+          <!-- Check if activityFeed exists and has items -->
+          <ng-container
+            *ngIf="activityFeed && activityFeed.length > 0; else noActivity"
+          >
+            <ul class="list-unstyled">
+              <li
+                *ngFor="let activity of activityFeed"
+                class="activity-item mb-3"
+              >
+                <div class="d-flex align-items-start">
+                  <div class="activity-icon me-3">
+                    <!-- Icon based on activity type -->
+                    <i
+                      class="bi"
+                      [ngClass]="getActivityIcon(activity.type)"
+                    ></i>
+                  </div>
+                  <div>
+                    <p class="mb-0 activity-description">
+                      {{ activity.description }}
+                    </p>
+                    <small class="text-muted"
+                      >{{ activity.user }} - {{ activity.timestamp }}</small
+                    >
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </ng-container>
+          <!-- Template to show when there's no activity -->
+          <ng-template #noActivity>
+            <p class="text-muted">No recent activity to display.</p>
+          </ng-template>
         </div>
       </div>
     </div>
