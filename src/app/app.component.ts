@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { WatsonAssistantService } from './_services/watson-assistant.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,10 @@ export class AppComponent implements OnInit {
   dropdownActive = false;
   showUserIcon = true; // Default to true
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private watsonAssistantService: WatsonAssistantService
+  ) {}
 
   ngOnInit() {
     this.router.events
@@ -29,6 +33,8 @@ export class AppComponent implements OnInit {
         // Close dropdown on navigation
         this.dropdownActive = false;
       });
+    // Load Watson Assistant chat widget
+    this.watsonAssistantService.loadWatsonAssistant();
   }
 
   openDropdown() {

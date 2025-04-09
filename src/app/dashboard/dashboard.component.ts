@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { UserService } from '../_services/user.service';
-import { WatsonAssistantService } from '../_services/watson-assistant.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr'; // Import ToastrService
 
@@ -31,8 +30,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private userService: UserService,
     private router: Router,
-    private toastr: ToastrService, // Inject ToastrService
-    private watsonAssistantService: WatsonAssistantService
+    private toastr: ToastrService // Inject ToastrService
   ) {}
   userData: any;
   // Dummy project data
@@ -129,9 +127,6 @@ export class DashboardComponent implements OnInit {
   ];
 
   async ngOnInit() {
-    // Load Watson Assistant chat widget
-    this.watsonAssistantService.loadWatsonAssistant();
-
     let token = localStorage.getItem('login_token') || '';
     let tokenDetails = JSON.parse(token);
     const response = await this.userService.getUserData(
